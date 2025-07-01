@@ -5,33 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculator</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="./js.js"></script>
+    <script src="./js.js" defer></script>
     <style>@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');</style>
 </head>
 <body>
     <div id="case">
-        <div id="screen">screen</div>
+        <div id="screen"></div>
             <div id="clearKeys">
-                <p id="clear">C</p>
-                <p id="del">DEL</p>
+                <button id="clear" data-value="c">C</button>
+                <button id="del" data-value="del">DEL</button>
             </div>
             <div id="numbers">
-                <p class="calcKey numbers">7</p>
-                <p class="calcKey numbers">8</p>
-                <p class="calcKey numbers">9</p>
-                <p class="calcKey operator">÷</p>
-                <p class="calcKey numbers">4</p>
-                <p class="calcKey numbers">5</p>
-                <p class="calcKey numbers">6</p>
-                <p class="calcKey operator">x</p>
-                <p class="calcKey numbers">1</p>
-                <p class="calcKey numbers">2</p>
-                <p class="calcKey numbers">3</p>
-                <p class="calcKey operator">-</p>
-                <p class="calcKey numbers">.</p>
-                <p class="calcKey numbers">0</p>
-                <p class="calcKey numbers">=</p>
-                <p class="calcKey operator">+</p>
+                <button class="calcKey numbers" data-value="7">7</button>
+                <button class="calcKey numbers" data-value="8">8</button>
+                <button class="calcKey numbers" data-value="9">9</button>
+                <button class="calcKey obuttonerator"data-value="/">÷</button>
+                <button class="calcKey numbers" data-value="4">4</button>
+                <button class="calcKey numbers" data-value="5">5</button>
+                <button class="calcKey numbers" data-value="6">6</button>
+                <button class="calcKey obuttonerator" data-value="*">x</button>
+                <button class="calcKey numbers" data-value="1">1</button>
+                <button class="calcKey numbers" data-value="2">2</button>
+                <button class="calcKey numbers" data-value="3">3</button>
+                <button class="calcKey obuttonerator" data-value="-">-</button>
+                <button class="calcKey numbers" data-value=",">.</button>
+                <button class="calcKey numbers" data-value="0">0</button>
+                <button class="calcKey numbers" data-value="=">=</button>
+                <button class="calcKey obuttonerator" data-value="+">+</button>
             </div> 
     </div>
 </body>

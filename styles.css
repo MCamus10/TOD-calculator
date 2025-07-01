@@ -4,7 +4,7 @@
     font-size: 1.6rem;
 }
 
-div { 
+button { 
     color: white
 }
 
@@ -43,7 +43,6 @@ div {
 
 .numbers {
     display: flex;
-    border: 2px solid rgb(27, 27, 27);
     background-color: rgb(27, 27, 27);
     justify-content: center;
     align-items: center;
@@ -53,17 +52,24 @@ div {
     margin: 0;
 }
 
+.numbers:hover {
+    background-color: rgb(70, 70, 70);
+}
+
 
 .operator {
     display: flex;
-    border: 2px solid rgb(255, 123, 0);
-    background-color: rgb(255, 123, 0);
+    background-color: hsl(30, 100%, 50%);
     justify-content: center;
     align-items: center;
     width: 60px;
     height: 60px;
     border-radius: 40px;
     margin: 0;
+}
+
+.operator:hover {
+    background-color: hsl(22, 100%, 50%);
 }
 
 #clearKeys{
@@ -75,10 +81,13 @@ div {
     margin-right: 22px;
 }
 
+#clear:hover, #del:hover {
+    background-color: hsl(0, 0%, 20%);
+}
+
 #clear, #del {
     display: flex;
-    border: 2px solid rgb(70, 69, 69);
-    background-color: rgb(70, 69, 69);
+    background-color: hsl(0, 0%, 27%);
     justify-content: center;
     align-items: center;
     border-radius: 40px;
