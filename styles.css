@@ -5,7 +5,7 @@
 }
 
 button { 
-    color: white
+    color: white;
 }
 
 #case {
@@ -24,12 +24,13 @@ button {
     display: flex;
     align-items: end;
     justify-content: end;
-    width: 250px;
+    width: 260px;
     min-height: 80px;
     border: 2px solid rgb(27, 27, 27);
     background-color: rgb(27, 27, 27);
     border-radius: 10px;
     margin: 10px;
+    overflow: hidden;
 }
 
 #numbers {
@@ -50,6 +51,7 @@ button {
     height: 60px;
     border-radius: 30px;
     margin: 0;
+    border: none;
 }
 
 .numbers:hover {
@@ -66,6 +68,7 @@ button {
     height: 60px;
     border-radius: 40px;
     margin: 0;
+    border: none;
 }
 
 .operator:hover {
@@ -81,25 +84,26 @@ button {
     margin-right: 22px;
 }
 
-#clear:hover, #del:hover {
+#clearButton:hover, #delButton:hover {
     background-color: hsl(0, 0%, 20%);
 }
 
-#clear, #del {
+#clearButton, #delButton {
     display: flex;
     background-color: hsl(0, 0%, 27%);
     justify-content: center;
     align-items: center;
     border-radius: 40px;
     margin: 0;
+    border: 0;
 }
 
-#clear {
+#clearButton {
     width: 1.3em;
     height: 1.3em;
 }
 
-#del {
+#delButton {
     width: 2.5em;
     height: 1.3em;
 }
