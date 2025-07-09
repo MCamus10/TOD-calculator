@@ -57,7 +57,9 @@ ERROR()
 let a = "";
 let b = "";
 let operator = "";
-const calculator = document.querySelector("#numbers");
+let result = "";
+let calcValidator = false;
+const calculator = document.querySelector("#case");
 const screen = document.querySelector("#screen");
 const clearButton = document.querySelector("#clearButton");
 const delButton = document.querySelector("#delButton")
@@ -66,29 +68,79 @@ calculator.addEventListener("click", (e) => {
     const clickedButton = e.target
     if (clickedButton.classList.contains("calcKey") && !clickedButton.classList.contains("operator")){
         const value = clickedButton.dataset.value;
+        if (calcValidator == true) {
+            screen.textContent = "";
+            a = "";
+            b = "";
+            calcValidator = false;
+        };
         if (operator == ""){
             screen.textContent += value;
-            a += value;
-        } else if (operator != "") {
+            a += value;         
+        } else if (operator != "" && b == "") {
+            screen.textContent = "";
             screen.textContent += value;
             b += value;
-            console.log(b)
+        } else if (operator != "") {
+            screen.textContent += value;
+            b += value;           
         };
-    };        
+
+    } else if (clickedButton.textContent == "DEL"){
+        screen.textContent = screen.textContent.slice(0, -1);
+        if (b == ""){
+            a = a.toString().slice(0,-1);
+        } else if (b != ""){
+            a = a.toString().slice(0,-1);
+            b = "";
+        };
+
+    } else if (clickedButton.textContent == "C"){
+        screen.textContent = "";
+        a = "";
+        b = "";
+
+    } else if (clickedButton.classList.contains("operator") && clickedButton.dataset.value != "="){
+        if (a != "" && b != ""){
+            let partialResult = evaluate(operator,a,b);
+            a = partialResult;
+            b = "";
+        };
+        operator = clickedButton.textContent;
+
+    } else if (clickedButton.dataset.value == "="){
+        let partialResult = evaluate(operator,a,b);
+        a = partialResult.toString();
+        operator = "";
+        calcValidator = true;
+    };         
 });
 
+function evaluate(operator,a,b){
+    if (b == ""){
+        screen.textContent = "Error";
+    } else {
+        a = +a;
+        b = +b;  
+        if (operator == "+") result = add(a,b);
+        if (operator == "-") result = subs(a,b);
+        if (operator == "x") result = mult(a,b);
+        if (operator == "÷") result = divide(a,b);
+        screen.textContent = "";
+        screen.textContent = round(result);
+        return round(result);
+    };
+};
 
-/* clearButton.addEventListener("click", () => screen.textContent ="");
-
-const calc = document.querySelector("#calculte");
-calc.addEventListener("click", calculate);
-function operate(operator, a, b) {
-    if (operator == "+") add(a,b);
-    if (operator == "-") subs(a,b);
-    if (operator == "*") mult(a,b);
-    if (operator == "/") divide(a,b);
-    a = 0;
-    b = 0;
+function round(number){
+    let intLength = Math.round(number).toString().length;
+    let numberLength = number.toString().length;
+    if (intLength > 10) {
+        return "Error";
+    } else if (numberLength > 10){
+        number = number.toFixed(10 - intLength); // avoid display overflow
+        return number;
+    } else return number; 
 };
 
 function add(a,b){
@@ -104,6 +156,7 @@ function mult(a,b){
 };
 
 function divide(a,b){
-    return a/b;
+    if (b == 0) return "Error";
+    else return a/b;
 };
- */
+ 
