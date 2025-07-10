@@ -3,16 +3,21 @@ let b = "";
 let operator = "";
 let result = "";
 let calcValidator = false;
+let dotDisabled = false;
 const calculator = document.querySelector("#case");
 const screen = document.querySelector("#screen");
 const clearButton = document.querySelector("#clearButton");
 const delButton = document.querySelector("#delButton")
+const dotButton = document.querySelector("#dot");
 
 calculator.addEventListener("click", (e) => {
     const clickedButton = e.target
     if (clickedButton.classList.contains("calcKey") && !clickedButton.classList.contains("operator")){
         const value = clickedButton.dataset.value;
-        if (calcValidator == true) { //check if a previous calculation has been done
+        if (value == ".") {
+            toggleDotKey();
+        };    
+        if (calcValidator == true) { //Check if a previous calculation has been done
             screen.textContent = "";
             b = "";
             calcValidator = false;
@@ -33,8 +38,16 @@ calculator.addEventListener("click", (e) => {
         screen.textContent = screen.textContent.slice(0, -1);
         if (b == ""){
             a = a.toString().slice(0,-1);
+            if (!a.includes(".") && dotDisabled){
+                 toggleDotKey();
+                 dotDisabled = false;
+            };
         } else if (b != ""){
             a = a.toString().slice(0,-1);
+            if (!a.includes(".") && dotDisabled) {
+                toggleDotKey();
+                dotDisabled = false;
+            };
             b = "";
             calcValidator = false;
         };
@@ -43,6 +56,7 @@ calculator.addEventListener("click", (e) => {
         screen.textContent = "";
         a = "";
         b = "";
+        toggleDotKey();
 
     } else if (clickedButton.classList.contains("operator") && clickedButton.dataset.value != "="){
         if (a != "" && b != ""){
@@ -51,6 +65,7 @@ calculator.addEventListener("click", (e) => {
             b = "";
         };
         operator = clickedButton.textContent;
+        toggleDotKey();
 
     } else if (clickedButton.dataset.value == "="){
         let partialResult = evaluate(operator,a,b);
@@ -59,6 +74,13 @@ calculator.addEventListener("click", (e) => {
         calcValidator = true;
     };         
 });
+
+function toggleDotKey(){
+    dotDisabled = !dotDisabled;
+    if (dotDisabled == true) {
+        dotButton.disabled = true;        
+    } else dotButton.disabled = false; 
+};
 
 function evaluate(operator,a,b){
     if (b == ""){
