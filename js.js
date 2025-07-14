@@ -110,9 +110,6 @@ function round(number){
 };
 
 function add(a,b){
-    if (a == 1 && b == 1){
-        return "Monki love"
-    }
     return a+b;
 };
 
